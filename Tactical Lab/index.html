@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tactical Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="boot-screen">
+    <div class="terminal">
+      <p class="typewriter">> TACTICAL SYSTEM BOOTING...</p>
+      <p class="typewriter delay-1">> AUTHENTICATION: SUCCESS...</p>
+      <p class="typewriter delay-2">> LOADING ARMORY DATA [TF-141]...</p>
+      <p class="blink">_</p>
+    </div>
+  </div>
+
+  <div class="header">
+    <div class="logo">TACTICAL LAB</div>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div>Clothing</div>
+      <div>Masks</div>
+      <div>Gloves</div>
+      <div>Boots</div>
+      <div>Marks</div>
+      <div>Patches</div>
+    </div>
+
+    <div class="main-content">
+      <div class="section hero">
+        <div class="hero-content">
+          <span class="hero-status">[ SYSTEM: ONLINE ]</span>
+          <h1>LOCK AND LOAD</h1>
+          <p>
+            // TASK: EQUIP FOR NEXT MISSION<br>
+            // OBJECTIVE: DOMINATE THE BATTLEFIELD
+          </p>
+          <button class="btn">OPEN ARMORY</button>
+        </div>
+        <div class="hero-skull"><img src="skull.png" alt=""></div>
+        <div class="hero-soldier"><img src="soldier.png" alt=""></div>
+      </div>
+
+      <div class="section featured">
+        <h3>FEATURED</h3>
+        <div class="cards">
+          <div class="card" onclick="openProduct(100)"><img src="images/armor.png" alt="Armored Vest"></div>
+          <div class="card" onclick="openProduct(120)"><img src="images/3.png" alt=""></div>
+          <div class="card" onclick="openProduct(90)"><img src="images/2.png" alt=""></div>
+          <div class="card" onclick="openProduct(150)"><img src="images/4.png" alt=""></div>
+          <div class="card" onclick="openProduct(200)"><img src="images/5.png" alt=""></div>
+
+          <div class="card" onclick="openProduct(110)"><img src="images/6.png" alt=""></div>
+          <div class="card" onclick="openProduct(130)"><img src="images/7.png" alt=""></div>
+          <div class="card" onclick="openProduct(95)"><img src="images/8.png" alt=""></div>
+          <div class="card" onclick="openProduct(170)"><img src="images/9.png" alt=""></div>
+          <div class="card" onclick="openProduct(210)"><img src="images/10.png" alt=""></div>
+
+          <div class="card" onclick="openProduct(110)"><img src="images/11.png" alt=""></div>
+          <div class="card" onclick="openProduct(130)"><img src="images/12.png" alt=""></div>
+          <div class="card" onclick="openProduct(95)"><img src="images/13.png" alt=""></div>
+          <div class="card" onclick="openProduct(170)"><img src="images/product2.png" alt=""></div>
+          <div class="card" onclick="openProduct(210)"><img src="images/product3.png" alt=""></div>
+          <div class="card" onclick="openProduct(110)"><img src="images/product2.png" alt=""></div>
+          <div class="card" onclick="openProduct(130)"><img src="images/product3.png" alt=""></div>
+          <div class="card" onclick="openProduct(95)"><img src="images/product1.png" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+
+  <script>
+    // Переход на страницу товара
+    function openProduct(price) {
+      localStorage.setItem("productPrice", price);
+      window.location.href = "product.html";
+    }
+
+    // Скрипт загрузочного экрана
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const bootScreen = document.getElementById('boot-screen');
+        if (bootScreen) {
+          bootScreen.style.opacity = '0';
+          setTimeout(() => {
+            bootScreen.style.display = 'none';
+          }, 500);
+        }
+      }, 3500); // 3.5 секунды анимации загрузки
+    });
+  </script>
+</body>
+</html>
