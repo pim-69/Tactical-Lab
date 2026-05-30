@@ -19,16 +19,21 @@
 
   <div class="header">
     <div class="logo">TACTICAL LAB</div>
+    <div class="cart-icon" onclick="toggleCart()">
+      CART [<span id="cart-count">0</span>]
+    </div>
   </div>
 
   <div class="container">
     <div class="sidebar">
-      <div>Clothing</div>
-      <div>Masks</div>
-      <div>Gloves</div>
-      <div>Boots</div>
-      <div>Marks</div>
-      <div>Patches</div>
+      <div class="sidebar-btn active" data-category="all">ALL</div>
+      <div class="sidebar-btn" data-category="clothing">CLOTHING</div>
+      <div class="sidebar-btn" data-category="vests">VESTS</div>
+      <div class="sidebar-btn" data-category="gloves">GLOVES</div>
+      <div class="sidebar-btn" data-category="boots">BOOTS</div>
+      <div class="sidebar-btn" data-category="masks">MASKS</div>
+      <div class="sidebar-btn" data-category="helmets">HELMETS</div>
+      <div class="sidebar-btn" data-category="backpacks">BACKPACKS</div>
     </div>
 
     <div class="main-content">
@@ -40,36 +45,187 @@
             // TASK: EQUIP FOR NEXT MISSION<br>
             // OBJECTIVE: DOMINATE THE BATTLEFIELD
           </p>
-          <button class="btn">OPEN ARMORY</button>
+          <button class="btn" onclick="document.getElementById('catalog').scrollIntoView({behavior: 'smooth'})">OPEN ARMORY</button>
         </div>
         <div class="hero-skull"><img src="skull.png" alt=""></div>
         <div class="hero-soldier"><img src="soldier.png" alt=""></div>
       </div>
 
-      <div class="section featured">
+      <div id="catalog" class="section featured">
         <h3>FEATURED</h3>
         <div class="cards">
-          <div class="card" onclick="openProduct(100)"><img src="images/armor.png" alt="Armored Vest"></div>
-          <div class="card" onclick="openProduct(120)"><img src="images/3.png" alt=""></div>
-          <div class="card" onclick="openProduct(90)"><img src="images/2.png" alt=""></div>
-          <div class="card" onclick="openProduct(150)"><img src="images/4.png" alt=""></div>
-          <div class="card" onclick="openProduct(200)"><img src="images/5.png" alt=""></div>
+          
+          <div class="card" data-item-category="vests">
+            <div class="card-image" onclick="openProduct(100, 'Armored Vest Alpha', 'images/armor.png')">
+              <img src="images/armor.png" alt="Armored Vest">
+            </div>
+            <div class="card-info">
+              <h4>Armored Vest Alpha</h4>
+              <div class="card-meta">
+                <span class="price">$100</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Armored Vest Alpha', 100, 'images/armor.png')">BUY</button>
+              </div>
+            </div>
+          </div>
 
-          <div class="card" onclick="openProduct(110)"><img src="images/6.png" alt=""></div>
-          <div class="card" onclick="openProduct(130)"><img src="images/7.png" alt=""></div>
-          <div class="card" onclick="openProduct(95)"><img src="images/8.png" alt=""></div>
-          <div class="card" onclick="openProduct(170)"><img src="images/9.png" alt=""></div>
-          <div class="card" onclick="openProduct(210)"><img src="images/10.png" alt=""></div>
+          <div class="card" data-item-category="vests">
+            <div class="card-image" onclick="openProduct(120, 'Tactical Vest Bravo', 'images/3.png')">
+              <img src="images/3.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Tactical Vest Bravo</h4>
+              <div class="card-meta">
+                <span class="price">$120</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Tactical Vest Bravo', 120, 'images/3.png')">BUY</button>
+              </div>
+            </div>
+          </div>
 
-          <div class="card" onclick="openProduct(110)"><img src="images/11.png" alt=""></div>
-          <div class="card" onclick="openProduct(130)"><img src="images/12.png" alt=""></div>
-          <div class="card" onclick="openProduct(95)"><img src="images/13.png" alt=""></div>
-          <div class="card" onclick="openProduct(170)"><img src="images/product2.png" alt=""></div>
-          <div class="card" onclick="openProduct(210)"><img src="images/product3.png" alt=""></div>
-          <div class="card" onclick="openProduct(110)"><img src="images/product2.png" alt=""></div>
-          <div class="card" onclick="openProduct(130)"><img src="images/product3.png" alt=""></div>
-          <div class="card" onclick="openProduct(95)"><img src="images/product1.png" alt=""></div>
+          <div class="card" data-item-category="vests">
+            <div class="card-image" onclick="openProduct(90, 'Light Vest', 'images/2.png')">
+              <img src="images/2.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Light Vest</h4>
+              <div class="card-meta">
+                <span class="price">$90</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Light Vest', 90, 'images/2.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="helmets">
+            <div class="card-image" onclick="openProduct(150, 'Ops-Core Helmet', 'images/4.png')">
+              <img src="images/4.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Ops-Core Helmet</h4>
+              <div class="card-meta">
+                <span class="price">$150</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Ops-Core Helmet', 150, 'images/4.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="helmets">
+            <div class="card-image" onclick="openProduct(200, 'Ballistic Helmet', 'images/5.png')">
+              <img src="images/5.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Ballistic Helmet</h4>
+              <div class="card-meta">
+                <span class="price">$200</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Ballistic Helmet', 200, 'images/5.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="gloves">
+            <div class="card-image" onclick="openProduct(110, 'Assault Gloves', 'images/6.png')">
+              <img src="images/6.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Assault Gloves</h4>
+              <div class="card-meta">
+                <span class="price">$110</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Assault Gloves', 110, 'images/6.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="gloves">
+            <div class="card-image" onclick="openProduct(130, 'Heavy Gloves', 'images/7.png')">
+              <img src="images/7.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Heavy Gloves</h4>
+              <div class="card-meta">
+                <span class="price">$130</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Heavy Gloves', 130, 'images/7.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="masks">
+            <div class="card-image" onclick="openProduct(95, 'Revenant Mask', 'images/8.png')">
+              <img src="images/8.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Revenant Mask</h4>
+              <div class="card-meta">
+                <span class="price">$95</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Revenant Mask', 95, 'images/8.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="masks">
+            <div class="card-image" onclick="openProduct(170, 'Ghost Balaclava', 'images/9.png')">
+              <img src="images/9.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Ghost Balaclava</h4>
+              <div class="card-meta">
+                <span class="price">$170</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Ghost Balaclava', 170, 'images/9.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="boots">
+            <div class="card-image" onclick="openProduct(210, 'Stalker Boots', 'images/10.png')">
+              <img src="images/10.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Stalker Boots</h4>
+              <div class="card-meta">
+                <span class="price">$210</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Stalker Boots', 210, 'images/10.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="backpacks">
+            <div class="card-image" onclick="openProduct(110, 'Raid Pack 45L', 'images/11.png')">
+              <img src="images/11.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Raid Pack 45L</h4>
+              <div class="card-meta">
+                <span class="price">$110</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Raid Pack 45L', 110, 'images/11.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" data-item-category="clothing">
+            <div class="card-image" onclick="openProduct(130, 'Combat Shirt', 'images/12.png')">
+              <img src="images/12.png" alt="">
+            </div>
+            <div class="card-info">
+              <h4>Combat Shirt</h4>
+              <div class="card-meta">
+                <span class="price">$130</span>
+                <button class="buy-btn" onclick="event.stopPropagation(); addToCartCatalog('Combat Shirt', 130, 'images/12.png')">BUY</button>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <div class="cart-header">
+        <h2>// ARMORY CART</h2>
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total">TOTAL: $<span id="cart-total-price">0</span></div>
+        <button class="btn checkout-btn" onclick="alert('SYSTEM: DISPATCH SECURED!')">CONFIRM ORDER</button>
       </div>
     </div>
   </div>
@@ -77,13 +233,15 @@
   <div class="scanlines"></div>
 
   <script>
-    // Переход на страницу товара
-    function openProduct(price) {
+    // Переход на страницу конкретного товара с сохранением данных
+    function openProduct(price, name, img) {
       localStorage.setItem("productPrice", price);
+      localStorage.setItem("productName", name);
+      localStorage.setItem("productImg", img);
       window.location.href = "product.html";
     }
 
-    // Скрипт загрузочного экрана
+    // Инициализация при загрузке страницы
     window.addEventListener('load', () => {
       setTimeout(() => {
         const bootScreen = document.getElementById('boot-screen');
@@ -93,8 +251,99 @@
             bootScreen.style.display = 'none';
           }, 500);
         }
-      }, 3500); // 3.5 секунды анимации загрузки
+      }, 3500);
+      updateCartBadge();
     });
+
+    // Логика фильтрации категорий (исправленный селектор)
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.sidebar-btn');
+      const productCards = document.querySelectorAll('.card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+
+          const selectedCategory = button.getAttribute('data-category');
+
+          productCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-item-category');
+            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+
+    // Открытие/Закрытие корзины
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+      } else {
+        renderCartItems();
+        modal.style.display = 'flex';
+      }
+    }
+
+    // Добавление в корзину прямо из каталога
+    function addToCartCatalog(name, price, img) {
+      let cart = JSON.parse(localStorage.getItem('tacticalCart')) || [];
+      cart.push({ name: name, price: price, img: img });
+      localStorage.setItem('tacticalCart', JSON.stringify(cart));
+      updateCartBadge();
+      alert(`// ADDED TO LOADOUT: ${name}`);
+    }
+
+    // Обновление счетчика товаров в шапке
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('tacticalCart')) || [];
+      document.getElementById('cart-count').innerText = cart.length;
+    }
+
+    // Рендеринг элементов внутри корзины
+    function renderCartItems() {
+      const cartContainer = document.getElementById('cart-items');
+      const cart = JSON.parse(localStorage.getItem('tacticalCart')) || [];
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="empty-msg">// CART IS EMPTY.</p>';
+        document.getElementById('cart-total-price').innerText = '0';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        total += parseInt(item.price);
+        const itemRow = document.createElement('div');
+        itemRow.className = 'cart-item-row';
+        itemRow.innerHTML = `
+          <img src="${item.img}" alt="">
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <p>$${item.price}</p>
+          </div>
+          <span class="remove-item" onclick="removeFromCart(${index})">DELETE</span>
+        `;
+        cartContainer.appendChild(itemRow);
+      });
+
+      document.getElementById('cart-total-price').innerText = total;
+    }
+
+    // Удаление элемента из корзины
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('tacticalCart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('tacticalCart', JSON.stringify(cart));
+      renderCartItems();
+      updateCartBadge();
+    }
   </script>
 </body>
 </html>

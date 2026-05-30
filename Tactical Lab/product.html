@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Product</title>
+  <title>Product Specifications</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -63,6 +63,35 @@
       height: 100%;
       object-fit: contain;
     }
+    .product-info-panel {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .product-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.3rem;
+      color: #fff;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .product-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .back-link:hover { color: var(--accent); }
+
     .product-description {
       width: 80%;
       max-width: 900px;
@@ -91,37 +120,57 @@
 <body>
 
   <div class="header">
-    <div class="logo">TACTICAL LAB</div>
-      </div>
-    </div>
+    <div class="logo" style="cursor:pointer;" onclick="window.location.href='index.html'">TACTICAL LAB</div>
   </div>
 
   <div class="main-content">
     <div class="product-top">
       <div class="main-image">
-        <img id="mainImg" src="images/product1.png">
+        <img id="mainImg" src="">
       </div>
 
       <div class="thumbs">
-        <div class="thumb"><img src="images/product1.png" onclick="changeImg(this)"></div>
-        <div class="thumb"><img src="images/product2.png" onclick="changeImg(this)"></div>
-        <div class="thumb"><img src="images/product3.png" onclick="changeImg(this)"></div>
+        <div class="thumb"><img id="t1" src="" onclick="changeImg(this)"></div>
+        <div class="thumb"><img id="t2" src="images/product2.png" onclick="changeImg(this)"></div>
+        <div class="thumb"><img id="t3" src="images/product3.png" onclick="changeImg(this)"></div>
+      </div>
+
+      <div class="product-info-panel">
+        <h1 id="productName" class="product-title">TACTICAL GEAR</h1>
+        <div id="productPrice" class="product-price">$0</div>
+        <button class="btn" onclick="addToCartProduct()">ADD TO INVENTORY</button>
+        <div>
+          <a href="index.html" class="back-link"><< RETURN TO ARMORY</a>
+        </div>
       </div>
     </div>
 
     <div class="product-description">
-      <textarea placeholder="Описание товара...">АРМЕЙСКИЙ БРОНЕЖИЛЕТ MODEL: ARTX-07. Обеспечивает защиту класса 7.62. Создан для экстремальных боевых условий.</textarea>
-    </div>
-
-    <div class="product-controls">
+      <textarea placeholder="Описание товара...">АРМЕЙСКИЙ КОМПЛЕКТ MODEL: ARTX-07. Создан для экстремальных боевых условий. Проверен в полевых операциях.</textarea>
     </div>
   </div>
 
   <div class="scanlines"></div>
 
   <script>
+    const price = localStorage.getItem("productPrice") || "100";
+    const name = localStorage.getItem("productName") || "Tactical Gear";
+    const img = localStorage.getItem("productImg") || "images/armor.png";
+
+    document.getElementById("productPrice").innerText = "$" + price;
+    document.getElementById("productName").innerText = name;
+    document.getElementById("mainImg").src = img;
+    document.getElementById("t1").src = img;
+
     function changeImg(el) {
       document.getElementById("mainImg").src = el.src;
+    }
+
+    function addToCartProduct() {
+      let cart = JSON.parse(localStorage.getItem('tacticalCart')) || [];
+      cart.push({ name: name, price: price, img: img });
+      localStorage.setItem('tacticalCart', JSON.stringify(cart));
+      alert("// LOADOUT UPDATED: CONFIGURATION COMPLETED");
     }
   </script>
 </body>
